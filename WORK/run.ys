@@ -1,0 +1,11 @@
+read_verilog -sv ../MODEL/*.sv
+
+copy exe_unit exe_unit_rtl
+hierarchy -top exe_unit_rtl
+ 
+synth 
+abc -g AND,OR,XOR
+
+opt_clean
+
+write_verilog -noattr  ../RTL/exe_unit_rtl.sv
